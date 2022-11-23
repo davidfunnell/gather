@@ -12,6 +12,19 @@ function createCard(name, description, pictureUrl, starts, ends, location) {
     `;
   }
 
+
+  function errorCard(res) {
+    return `
+      <div class="card shadow p-1 mb-3 bg-white rounded">
+        <div class="card-body">
+        <div class="alert alert-danger" role="alert">
+        ${res} Error
+      </div>
+        </div>
+      </div>
+    `;
+  }
+
 function colSelector(colValue) {
     if(colValue == 3){
         colValue = 1
@@ -30,7 +43,10 @@ function colSelector(colValue) {
       const response = await fetch(url);
 
       if (!response.ok) {
-        console.error(e);
+        console.error(response.status);
+        let html = errorCard(response.status);
+        let column = document.querySelector("#col_1");
+        column.innerHTML += html
       } else {
         const data = await response.json();
         let colValue = 0;
@@ -47,7 +63,6 @@ function colSelector(colValue) {
 
             let starts = new Date(details.conference.starts);
             starts = starts.toLocaleDateString();
-
             let ends = new Date(details.conference.ends);
             ends = ends.toLocaleDateString();
 
@@ -61,6 +76,10 @@ function colSelector(colValue) {
       }
     } catch (e) {
         console.error(e);
+        let html = errorCard(e);
+        let column = document.querySelector("#col_1");
+        column.innerHTML += html
+
     }
 
   });
