@@ -1,4 +1,4 @@
-function createCard(name, description, pictureUrl) {
+function createCard(name, description, pictureUrl, starts, ends) {
     return `
       <div class="card shadow p-1 mb-3 bg-white rounded">
         <img src="${pictureUrl}" class="card-img-top">
@@ -6,6 +6,7 @@ function createCard(name, description, pictureUrl) {
           <h5 class="card-title">${name}</h5>
           <p class="card-text">${description}</p>
         </div>
+        <div class="card-footer">${starts} - ${ends}</div>
       </div>
     `;
   }
@@ -41,7 +42,14 @@ function colSelector(colValue) {
             const name = details.conference.name;
             const description = details.conference.description;
             const pictureUrl = details.conference.location.picture_url;
-            const html = createCard(name, description, pictureUrl);
+
+            let starts = new Date(details.conference.starts);
+            starts = starts.toLocaleDateString();
+
+            let ends = new Date(details.conference.ends);
+            ends = ends.toLocaleDateString();
+            
+            const html = createCard(name, description, pictureUrl, starts, ends);
             colValue = colSelector(colValue);
             const column = document.querySelector(`#col_${colValue}`);
             column.innerHTML += html;
