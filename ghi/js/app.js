@@ -26,14 +26,13 @@ function createCard(name, description, pictureUrl, starts, ends, location) {
   }
 
 function colSelector(colValue) {
-    if(colValue == 3){
-        colValue = 1
-    } else {
-        colValue++
-    }
-    return colValue
+  if(colValue == 3){
+      colValue = 1
+  } else {
+      colValue++
+  }
+  return colValue
 }
-
 
   window.addEventListener('DOMContentLoaded', async () => {
 
@@ -41,7 +40,6 @@ function colSelector(colValue) {
 
     try {
       const response = await fetch(url);
-
       if (!response.ok) {
         console.error(response.status);
         let html = errorCard(response.status);
