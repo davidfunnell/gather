@@ -27,6 +27,7 @@ class PresentationDetailEncoder(ModelEncoder):
         "synopsis",
         "created",
         "conference",
+        "id",
     ]
     encoders = {
         "conference": ConferenceListEncoder(),

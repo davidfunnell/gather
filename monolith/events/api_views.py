@@ -34,7 +34,7 @@ class LocationDetailEncoder(ModelEncoder):
 
 class ConferenceListEncoder(ModelEncoder):
     model = Conference
-    properties = ["name"]
+    properties = ["name", "id"]
 
 
 class ConferenceDetailEncoder(ModelEncoder):
@@ -49,6 +49,7 @@ class ConferenceDetailEncoder(ModelEncoder):
         "created",
         "updated",
         "location",
+        "id",
     ]
     encoders = {
         "location": LocationListEncoder(),
@@ -76,7 +77,7 @@ def api_list_conferences(request):
     }
     """
     if request.method == "GET":
-        conferences = Conference.objects.all()
+        conferences = Conference.objects.all().order_by("id")
         return JsonResponse(
             {"conferences": conferences},
             encoder=ConferenceListEncoder,
