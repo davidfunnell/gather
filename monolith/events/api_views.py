@@ -12,6 +12,7 @@ class LocationListEncoder(ModelEncoder):
     properties = [
         "name",
         "picture_url",
+        "id",
     ]
 
 
@@ -24,6 +25,7 @@ class LocationDetailEncoder(ModelEncoder):
         "created",
         "updated",
         "picture_url",
+        "id",
     ]
 
     def get_extra_data(self, o):
