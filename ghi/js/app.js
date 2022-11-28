@@ -34,50 +34,50 @@ function colSelector(colValue) {
   return colValue
 }
 
-  window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async () => {
 
-    const url = 'http://localhost:8000/api/conferences/';
+  const url = 'http://localhost:8000/api/conferences/';
 
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        console.error(response.status);
-        let html = errorCard(response.status);
-        let column = document.querySelector("#col_1");
-        column.innerHTML += html
-      } else {
-        const data = await response.json();
-        let colValue = 0;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(response.status);
+      let html = errorCard(response.status);
+      let column = document.querySelector("#col_1");
+      column.innerHTML += html
+    } else {
+      const data = await response.json();
+      let colValue = 0;
 
-        for (let conference of data.conferences) {
-          const detailUrl = `http://localhost:8000${conference.href}`;
-          const detailResponse = await fetch(detailUrl);
-          if (detailResponse.ok) {
-            const details = await detailResponse.json();
-            const name = details.conference.name;
-            const description = details.conference.description;
-            const pictureUrl = details.conference.location.picture_url;
-            const location = details.conference.location.name
+      for (let conference of data.conferences) {
+        const detailUrl = `http://localhost:8000${conference.href}`;
+        const detailResponse = await fetch(detailUrl);
+        if (detailResponse.ok) {
+          const details = await detailResponse.json();
+          const name = details.conference.name;
+          const description = details.conference.description;
+          const pictureUrl = details.conference.location.picture_url;
+          const location = details.conference.location.name
 
-            let starts = new Date(details.conference.starts);
-            starts = starts.toLocaleDateString();
-            let ends = new Date(details.conference.ends);
-            ends = ends.toLocaleDateString();
+          let starts = new Date(details.conference.starts);
+          starts = starts.toLocaleDateString();
+          let ends = new Date(details.conference.ends);
+          ends = ends.toLocaleDateString();
 
-            const html = createCard(name, description, pictureUrl, starts, ends, location);
-            colValue = colSelector(colValue);
-            const column = document.querySelector(`#col_${colValue}`);
-            column.innerHTML += html;
-          }
+          const html = createCard(name, description, pictureUrl, starts, ends, location);
+          colValue = colSelector(colValue);
+          const column = document.querySelector(`#col_${colValue}`);
+          column.innerHTML += html;
         }
-
       }
-    } catch (e) {
-        console.error(e);
-        let html = errorCard(e);
-        let column = document.querySelector("#col_1");
-        column.innerHTML += html
 
     }
+  } catch (e) {
+      console.error(e);
+      let html = errorCard(e);
+      let column = document.querySelector("#col_1");
+      column.innerHTML += html
 
-  });
+  }
+
+});
