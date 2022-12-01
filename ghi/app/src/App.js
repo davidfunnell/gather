@@ -9,6 +9,7 @@ import {
   Route,
 } from 'react-router-dom';
 import PresentationForm from './PresentationForm';
+import MainPage from './MainPage';
 
 
 
@@ -21,6 +22,8 @@ function App(props) {
       <Nav />
       <div className="container">
         <Routes>
+          <Route index element={<MainPage/>} />
+
           <Route path='conferences' >
             <Route path='new' element={<ConferenceForm/>}/>
           </Route>
