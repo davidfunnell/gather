@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class AttendForm extends React.Component {
     constructor(props) {
         super(props)
@@ -9,7 +8,6 @@ class AttendForm extends React.Component {
             email: '',
             conferences: []
           };
-
 
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
