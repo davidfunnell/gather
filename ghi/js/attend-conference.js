@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', async () => {
       loadingTag.classList.add("d-none")
     }
 
-/*  new stuff added */
 
     const formTag = document.getElementById('create-attendee-form');
     formTag.addEventListener('submit', async event => {
@@ -47,10 +46,5 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       }
     });
-
-
-
-/*  new stuff added */
-
 
   });
