@@ -20,7 +20,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      {/* <div className="container"> */}
         <Routes>
           <Route index element={<MainPage/>} />
 
@@ -41,7 +41,7 @@ function App(props) {
           </Route>
 
         </Routes>
-      </div>
+      {/* </div> */}
     </BrowserRouter>
   );
 }
