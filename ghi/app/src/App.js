@@ -8,6 +8,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import PresentationForm from './PresentationForm';
 
 
 
@@ -31,7 +32,11 @@ function App(props) {
           <Route path='attendees' element={<AttendeesList attendees={props.attendees} />}>
             <Route path='new' element={<AttendForm/>}/>
           </Route>
-          
+
+          <Route path='presentations'>
+            <Route path='new' element={<PresentationForm/>}/>
+          </Route>
+
         </Routes>
       </div>
     </BrowserRouter>

@@ -14,12 +14,14 @@ window.addEventListener('DOMContentLoaded', async () => {
       }
     }
     const formTag = document.getElementById('create-conference-form');
+    // const selectTag = document.getElementById("conference");  This is an item they added to their code
     formTag.addEventListener('submit', async event => {
       event.preventDefault();
       const formData = new FormData(formTag);
       const json = JSON.stringify(Object.fromEntries(formData));
       const select = document.getElementById('conference');
       let confId = select.selectedIndex
+      // const confId = selectTag.options[selectTag.selectedIndex].value;  This is an item they added to their code instead of my version
       const locationUrl = `http://localhost:8000/api/conferences/${confId}/presentations/`;
       const fetchConfig = {
         method: "post",
