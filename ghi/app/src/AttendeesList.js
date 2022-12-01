@@ -1,5 +1,9 @@
+import { Outlet } from "react-router-dom";
+
 function AttendeesList(props) {
     return(
+        <>
+        <Outlet/>
         <table className="table table-striped">
             <thead>
             <tr>
@@ -18,6 +22,7 @@ function AttendeesList(props) {
             })}
             </tbody>
         </table>
+        </>
      );
   }
 

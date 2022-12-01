@@ -4,9 +4,11 @@ class AttendForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            conference: '',
             name: '',
             email: '',
-            conferences: []
+            conferences: [],
+            hasSignedUp: false,
           };
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -19,6 +21,7 @@ class AttendForm extends React.Component {
         event.preventDefault();
         const data = {...this.state};
         delete data.conferences;
+        delete data.hasSignedUp
 
         const locationUrl = 'http://localhost:8001/api/attendees/';
         const fetchConfig = {
@@ -37,7 +40,7 @@ class AttendForm extends React.Component {
             name: '',
             email: '',
             conference: '',
-            success: true,
+            hasSignedUp: true,
           };
           this.setState(cleared);
         }
@@ -78,7 +81,7 @@ class AttendForm extends React.Component {
     }
     let formClass = ""
     let completeClass = "alert alert-success d-none mb-0"
-    if (this.state.success){
+    if (this.state.hasSignedUp){
         formClass = "d-none"
         completeClass = "alert alert-success mb-0"
     }
